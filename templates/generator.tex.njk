@@ -1,0 +1,66 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+% Moderncv themes
+\moderncvstyle{classic} % options: casual, classic, banking, oldstyle, fancy
+\moderncvcolor{blue} % options: blue (default), orange, green, red, purple, grey, black
+%\renewcommand{\familydefault}{\sfdefault} % uncomment if you want sans-serif globally
+\usepackage[scale=0.875, top=2cm, bottom=2cm]{geometry}
+\usepackage{pifont}
+\setlength{\hintscolumnwidth}{3cm}
+
+
+% Personal data
+\name{<= personalData.name.first =>}{<= personalData.name.last =>}
+\title{<= personalData.title =>}
+\address{<= personalData.address.street =>}{<= personalData.address.city =>}{<= personalData.address.country =>}
+\mobile{<= personalData.mobile =>}
+\email{<= personalData.email =>}
+\homepage{<= personalData.homepage =>}
+\social[linkedin]{<= personalData.social.linkedin =>}
+\social[github]{<= personalData.social.github =>}
+\quote{<= personalData.quote =>}
+
+\begin{document}
+\makecvtitle
+
+\section{<= experience.name =>}
+<% for job in experience.experience %>
+\cventry {<= job.years =>}{<= job.position =>}{<= job.company =>}{<= job.location =>}{}{}
+<% for whatYouHaveDone in job.details %>
+\cvitem {\ding{<= whatYouHaveDone.bolteNumber =>}}{<= whatYouHaveDone.worksDone | tex =>}
+<% endfor %>
+<% endfor %>
+
+<% if education %>
+\section{<= education.name =>}
+<% for educationItem in education.education %>
+\cventry {<= educationItem.years =>}{<= educationItem.title | tex =>}{<= educationItem.where | tex =>}{}{}{}
+<% for detail in educationItem.details %>
+\cvitem {\ding{<= detail.bolteNumber =>}}{<= detail.whatYouhaveDoneOrLeant | tex =>}
+<% endfor %>
+<% endfor %>
+<% endif %>
+
+<% if skills %>
+\section{<= skills.name =>}
+<% for skillItem in skills.skills %>
+\cvitem {\textbf{<= skillItem.skillName | tex =>}}{<= skillItem.listOfSkills.join(", ") | tex =>}
+<% endfor %>
+<% endif %>
+
+<% if projects %>
+\section{<= projects.name | tex =>}
+<% for projectItem in projects.projects %>
+\cvitem {\href{<= projectItem.githubLink =>}{\textbf{<= projectItem.projectName | tex =>}}}{<= projectItem.description | tex =>, <= projectItem.techUsed | techUsedToString | tex => }
+<% endfor %>
+<% endif %>
+
+<% if languages %>
+\section{<= languages.name | tex =>}
+<% for languageItem in languages.languages %>
+\cvitem {\textbf{<= languageItem.languageName | tex =>}}{<= languageItem.proficiencyLevel | tex =>}
+<% endfor %>
+<% endif %>
+\end{document}
+
+

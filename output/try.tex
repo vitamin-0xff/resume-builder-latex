@@ -1,0 +1,97 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+% Moderncv themes
+\moderncvstyle{classic} % options: casual, classic, banking, oldstyle, fancy
+\moderncvcolor{blue} % options: blue (default), orange, green, red, purple, grey, black
+%\renewcommand{\familydefault}{\sfdefault} % uncomment if you want sans-serif globally
+\usepackage[scale=0.875, top=2cm, bottom=2cm]{geometry}
+\usepackage{pifont}
+\setlength{\hintscolumnwidth}{3cm}
+
+
+% Personal data
+\name{Alexandra}{Rusu}
+\title{Senior Full-Stack Engineer • Ex-Meta • Remote}
+\address{Strada Viitorului 42}{Bucharest}{Romania}
+\mobile{+40 723 456 789}
+\email{alexandra.rusu@proton.me}
+\homepage{alexrusu.dev}
+\social[linkedin]{alexandrarusu}
+\social[github]{alexrusu}
+\quote{I turn coffee into production-ready systems.}
+
+\begin{document}
+\makecvtitle
+
+\section{Professional Experience}
+
+\cventry {2022–Present}{Senior Software Engineer}{Meta}{London, UK (Remote)}{}{}
+
+\cvitem {\ding{52}}{Led the complete rewrite of Instagram Direct’s real-time messaging backend using Hack + GraphQL + TAO}
+
+\cvitem {\ding{52}}{Reduced message delivery latency from 800ms → 90ms (P99) for 1.8B daily users}
+
+\cvitem {\ding{52}}{Owned E2E reliability — achieved 99.999\% uptime for 3 consecutive quarters}
+
+\cvitem {\ding{52}}{Mentored 5 engineers and established the team’s TypeScript migration strategy}
+
+
+\cventry {2020–2022}{Full-Stack Engineer}{Revolut}{Kraków, Poland (Remote)}{}{}
+
+\cvitem {\ding{52}}{Built the crypto trading engine (Kotlin + PostgreSQL) handling €2B+ monthly volume}
+
+\cvitem {\ding{52}}{Designed and shipped the in-app Stock Trading feature (React Native + Node.js)}
+
+\cvitem {\ding{52}}{Reduced payment processing failures by 68\% via intelligent retry + circuit breaking}
+
+
+
+
+\section{Education}
+
+\cventry {2016–2020}{B.Sc. Computer Science \& Mathematics}{University Politehnica of Bucharest}{}{}{}
+
+\cvitem {\ding{52}}{Graduated Summa Cum Laude • GPA 9.92/10.00 (ranked 1st/380)}
+
+\cvitem {\ding{52}}{President of the ACM Student Chapter • Organized national programming contests}
+
+\cvitem {\ding{52}}{Published paper on distributed consensus algorithms at IEEE conference}
+
+
+
+
+
+\section{Technical Skills}
+
+\cvitem {\textbf{Languages}}{TypeScript, Python, Go, Rust, Kotlin, Hack/PHP}
+
+\cvitem {\textbf{Frontend}}{React, Next.js, React Native, GraphQL, Tailwind, Framer Motion}
+
+\cvitem {\textbf{Backend \& Infrastructure}}{Node.js, PostgreSQL, Redis, Kubernetes, Terraform, gRPC}
+
+\cvitem {\textbf{Tools \& Platforms}}{Docker, GitHub Actions, Datadog, Sentry, Vercel, AWS}
+
+
+
+
+\section{Selected Projects}
+
+\cvitem {\href{https://github.com/alexrusu/boltcv}{\textbf{BoltCV – Dynamic Resume Builder}}}{The very tool you're using right now — generates stunning LaTeX CVs from JSON in <100ms, Next.js 14, TypeScript, TailwindCSS, Nunjucks + XeLaTeX }
+
+\cvitem {\href{https://github.com/alexrusu/nanostore}{\textbf{NanoStore – Distributed Key-Value Store}}}{Raft-based KV store in Go that passes all Jepsen tests • 42k+ stars, Go, Raft Consensus, gRPC }
+
+
+
+
+\section{Languages}
+
+\cvitem {\textbf{English}}{Fluent (C2)}
+
+\cvitem {\textbf{Romanian}}{Native}
+
+\cvitem {\textbf{French}}{Professional working proficiency}
+
+
+\end{document}
+
+

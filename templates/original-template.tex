@@ -1,0 +1,78 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+% Moderncv themes
+\moderncvstyle{classic} % options: casual, classic, banking, oldstyle, fancy
+\moderncvcolor{blue} % options: blue (default), orange, green, red, purple, grey, black
+%\renewcommand{\familydefault}{\sfdefault} % uncomment if you want sans-serif globally
+\usepackage[scale=0.875, top=2cm, bottom=2cm]{geometry}
+\usepackage{pifont}
+
+% Personal data
+\name{John}{Doe}
+\title{Curriculum Vitae}
+\address{1234 Innovation Drive}{San Francisco, CA 94103}{United States}
+\mobile{+1 (415) 555-1234}
+\email{john.doe@gmail.com}
+\homepage{johndoe.dev}
+\social[linkedin]{john-doe}
+\social[github]{johndoe}
+\photo[64pt][0.4pt]{example-image} % remove or replace with your photo
+\quote{Senior Full-Stack Engineer passionate about building scalable systems and beautiful user experiences.}
+
+\begin{document}
+
+\makecvtitle
+
+\section{Professional Experience}
+\cventry{2021--Present}{Senior Software Engineer}{Google}{Mountain View, CA}{}{}
+\begin{itemize}
+\item Led the redesign of the core search ranking service, improving latency by 42% and handling 2B+ daily requests.
+\item Designed and shipped the new Machine Learning inference platform using TensorFlow Serving + Kubernetes, now used by 30+ internal teams.
+\item Mentored 6 junior engineers and established the team’s code review and onboarding standards.
+\end{itemize}
+
+\cventry{2018--2021}{Full-Stack Engineer}{Meta}{Menlo Park, CA}{}{}
+\begin{itemize}
+\item Built React + GraphQL frontends for Instagram Shopping, driving \$450M additional annual revenue.
+\item Owned the entire backend stack (Python/Django + Hack/PHP) for the Creator Marketplace feature (10M+ MAU).
+\item Reduced infrastructure costs by 35\% through database sharding and intelligent caching strategies.
+\end{itemize}
+
+\cventry{2016--2018}{Software Engineer}{Stripe}{San Francisco, CA}{}{}
+\begin{itemize}
+\item Implemented the Billing v2 system that powers subscriptions for companies like Slack, Shopify, and Zoom.
+\item Designed and open-sourced Stripe’s internal A/B testing framework (now used by 200+ engineers).
+\item On-call lead for Payments API — achieved 99.999% uptime for three consecutive quarters.
+\end{itemize}
+
+\section{Education}
+\cventry{2014--2016}{Master of Science in Computer Science}{Stanford University}{Stanford, CA}{\textit{GPA 4.0/4.0}}{}
+\cvitem{Thesis}{``Scalable Deep Learning on Heterogeneous Distributed Systems'' — advised by Prof. Andrew Ng}
+
+\cventry{2010--2014}{Bachelor of Science in Computer Science}{UC Berkeley}{Berkeley, CA}{\textit{GPA 3.91/4.0}}{Summa Cum Laude}
+
+\section{Skills}
+\cvitem{Programming}{Python (expert) · JavaScript/TypeScript (expert) · Go · Java · Rust · C++}
+\cvitem{Frameworks \& Libraries}{React · Next.js · Node.js · Django · GraphQL · gRPC · TensorFlow · PyTorch}
+\cvitem{Cloud \& DevOps}{AWS (Certified Solutions Architect) · GCP · Kubernetes · Docker · Terraform · CI/CD}
+\cvitem{Databases}{PostgreSQL · MySQL · Redis · Cassandra · BigQuery · DynamoDB}
+\cvitem{Other}{System Design · Distributed Systems · Machine Learning · Algorithms · Technical Leadership}
+
+\section{Selected Projects}
+\cvitem{Portfolio Site}{\small\httplink{johndoe.dev} — Built with Next.js 14, Tailwind, Three.js, deployed on Vercel (100 Lighthouse score)}
+\cvitem{Distributed Key-Value Store}{\small\httplink{github.com/johndoe/distributed-kv} — Go + Raft consensus, passes Jepsen tests, 50k+ stars}
+\cvitem{ML Recommender System}{\small Personalised Netflix-style engine using PyTorch + collaborative filtering — top 3% in Kaggle competition}
+
+\section{Certifications \& Awards}
+\cvitem{2023}{Google OC Award — for exceptional impact on Search infrastructure}
+\cvitem{2022}{AWS Certified Solutions Architect – Professional}
+\cvitem{2021}{Meta Hacker Cup — World Finals (rank 27)}
+\cvitem{2019}{Stripe Open Source Award}
+
+\section{Languages}
+\cvitem{English}{Native}
+\cvitem{Spanish}{Professional working proficiency}
+\cvitem{Japanese}{Conversational}
+
+\clearpage
+\end{document}
