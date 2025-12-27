@@ -1,5 +1,6 @@
 import nunjucks from "npm:nunjucks@3.2.4";
-import {  exampleResumeData_alex, TechUsed } from "./types/format.ts";
+import { TechUsed } from "./types/format.ts";
+import { essidSData } from "./data.ts";
 
 
 const outputDirectory = "output";
@@ -35,5 +36,5 @@ env.addFilter("tex", latexEscape);
 
 
 
-const tex = env.render("generator.tex.njk", exampleResumeData_alex);
+const tex = env.render("generator.tex.njk", essidSData);
 Deno.writeTextFileSync(`${outputDirectory}/try.tex`, tex);
