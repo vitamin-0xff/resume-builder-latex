@@ -1,8 +1,8 @@
-\documentclass[11pt,a4paper,sans]{moderncv}
+\documentclass[<= config.fontSize =>,<= config.paperSize =>,sans]{moderncv}
 
 % Moderncv themes
 \moderncvstyle{classic} % options: casual, classic, banking, oldstyle, fancy
-\moderncvcolor{blue} % options: blue (default), orange, green, red, purple, grey, black
+\moderncvcolor{<= config.color =>} % options: blue (default), orange, green, red, purple, grey, black
 %\renewcommand{\familydefault}{\sfdefault} % uncomment if you want sans-serif globally
 \usepackage[scale=0.875, top=2cm, bottom=2cm]{geometry}
 \usepackage{pifont}
@@ -13,12 +13,24 @@
 \name{<= personalData.name.first =>}{<= personalData.name.last =>}
 \title{<= personalData.title =>}
 \address{<= personalData.address.street =>}{<= personalData.address.city =>}{<= personalData.address.country =>}
+<% if personalData.mobile %>
 \mobile{<= personalData.mobile =>}
+<% endif %>
+<% if personalData.email %>
 \email{<= personalData.email =>}
+<% endif %>
+<% if personalData.homepage %>
 \homepage{<= personalData.homepage =>}
+<% endif %>
+<% if personalData.social and personalData.social.linkedin %>
 \social[linkedin]{<= personalData.social.linkedin =>}
+<% endif %>
+<% if personalData.social and personalData.social.github %>
 \social[github]{<= personalData.social.github =>}
+<% endif %>
+<% if personalData.quote %>
 \quote{<= personalData.quote =>}
+<% endif %>
 
 \begin{document}
 \makecvtitle
@@ -61,6 +73,35 @@
 \cvitem {\textbf{<= languageItem.languageName | tex =>}}{<= languageItem.proficiencyLevel | tex =>}
 <% endfor %>
 <% endif %>
+
+<% if certifications %>
+\section{<= certifications.name | tex =>}
+<% for cert in certifications.certifications %>
+\cvitem {<= cert.year =>}{\textbf{<= cert.name | tex =>} - <= cert.issuer | tex =><% if cert.credentialId %> (ID: <= cert.credentialId | tex =>)<% endif %>}
+<% endfor %>
+<% endif %>
+
+<% if awards %>
+\section{<= awards.name | tex =>}
+<% for award in awards.awards %>
+\cvitem {<= award.year =>}{\textbf{<= award.title | tex =>} - <= award.issuer | tex =><% if award.description %> \\ <= award.description | tex =><% endif %>}
+<% endfor %>
+<% endif %>
+
+<% if publications %>
+\section{<= publications.name | tex =>}
+<% for pub in publications.publications %>
+\cvitem {<= pub.year =>}{\textbf{<= pub.title | tex =>} \\ <= pub.authors.join(", ") | tex => \\ \textit{<= pub.venue | tex =>}<% if pub.doi %> \\ DOI: <= pub.doi | tex =><% endif %>}
+<% endfor %>
+<% endif %>
+
+<% if volunteer %>
+\section{<= volunteer.name | tex =>}
+<% for vol in volunteer.volunteer %>
+\cventry {<= vol.years =>}{<= vol.role | tex =>}{<= vol.organization | tex =>}{<= vol.location =>}{}{<= vol.description | tex =>}
+<% endfor %>
+<% endif %>
+
 \end{document}
 
 

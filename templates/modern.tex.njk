@@ -1,0 +1,109 @@
+\documentclass[<= config.fontSize =>,<= config.paperSize =>,sans]{moderncv}
+
+% Modern style - contemporary and visually appealing
+\moderncvstyle{casual}
+\moderncvcolor{<= config.color =>}
+\usepackage[scale=0.88, top=1.8cm, bottom=1.8cm]{geometry}
+\usepackage{pifont}
+\setlength{\hintscolumnwidth}{3.2cm}
+
+% Personal data
+\name{<= personalData.name.first =>}{<= personalData.name.last =>}
+\title{<= personalData.title =>}
+\address{<= personalData.address.street =>}{<= personalData.address.city =>}{<= personalData.address.country =>}
+<% if personalData.mobile %>
+\mobile{<= personalData.mobile =>}
+<% endif %>
+<% if personalData.email %>
+\email{<= personalData.email =>}
+<% endif %>
+<% if personalData.homepage %>
+\homepage{<= personalData.homepage =>}
+<% endif %>
+<% if personalData.social and personalData.social.linkedin %>
+\social[linkedin]{<= personalData.social.linkedin =>}
+<% endif %>
+<% if personalData.social and personalData.social.github %>
+\social[github]{<= personalData.social.github =>}
+<% endif %>
+<% if personalData.quote %>
+\quote{\Large <= personalData.quote =>}
+<% endif %>
+
+\begin{document}
+\makecvtitle
+
+\section{<= experience.name =>}
+<% for job in experience.experience %>
+\subsection{<= job.position | tex => at <= job.company | tex =>}
+\cvitem{Period}{<= job.years =>}
+\cvitem{Location}{<= job.location =>}
+<% for detail in job.details %>
+\cvitem{\ding{<= detail.bolteNumber =>}}{<= detail.worksDone | tex =>}
+<% endfor %>
+<% endfor %>
+
+<% if education %>
+\section{<= education.name =>}
+<% for educationItem in education.education %>
+\subsection{<= educationItem.title | tex =>}
+\cvitem{Period}{<= educationItem.years =>}
+\cvitem{Institution}{<= educationItem.where | tex =>}
+<% for detail in educationItem.details %>
+\cvitem{\ding{<= detail.bolteNumber =>}}{<= detail.whatYouhaveDoneOrLeant | tex =>}
+<% endfor %>
+<% endfor %>
+<% endif %>
+
+<% if skills %>
+\section{<= skills.name =>}
+<% for skillItem in skills.skills %>
+\cvitem{\textbf{<= skillItem.skillName | tex =>}}{<= skillItem.listOfSkills.join(" • ") | tex =>}
+<% endfor %>
+<% endif %>
+
+<% if certifications %>
+\section{<= certifications.name | tex =>}
+<% for cert in certifications.certifications %>
+\cvitem{<= cert.year =>}{\textbf{<= cert.name | tex =>} \\ \textit{<= cert.issuer | tex =>}<% if cert.url %> \\ \url{<= cert.url =>}<% endif %>}
+<% endfor %>
+<% endif %>
+
+<% if projects %>
+\section{<= projects.name | tex =>}
+<% for projectItem in projects.projects %>
+\subsection{\href{<= projectItem.githubLink =>}{<= projectItem.projectName | tex =>}}
+\cvitem{Description}{<= projectItem.description | tex =>}
+\cvitem{Tech Stack}{<= projectItem.techUsed | techUsedToString | tex =>}
+<% endfor %>
+<% endif %>
+
+<% if awards %>
+\section{<= awards.name | tex =>}
+<% for award in awards.awards %>
+\cvitem{<= award.year =>}{\textbf{<= award.title | tex =>} \\ \textit{<= award.issuer | tex =>}<% if award.description %> \\ <= award.description | tex =><% endif %>}
+<% endfor %>
+<% endif %>
+
+<% if publications %>
+\section{<= publications.name | tex =>}
+<% for pub in publications.publications %>
+\cvitem{<= pub.year =>}{\textbf{<= pub.title | tex =>} \\ <= pub.authors.join(", ") | tex => \\ \textit{<= pub.venue | tex =>}<% if pub.url %> \\ \url{<= pub.url =>}<% endif %>}
+<% endfor %>
+<% endif %>
+
+<% if volunteer %>
+\section{<= volunteer.name | tex =>}
+<% for vol in volunteer.volunteer %>
+\cventry{<= vol.years =>}{<= vol.role | tex =>}{<= vol.organization | tex =>}{<= vol.location =>}{}{<= vol.description | tex =>}
+<% endfor %>
+<% endif %>
+
+<% if languages %>
+\section{<= languages.name | tex =>}
+<% for languageItem in languages.languages %>
+\cvitem{<= languageItem.languageName | tex =>}{<= languageItem.proficiencyLevel | tex =>}
+<% endfor %>
+<% endif %>
+
+\end{document}

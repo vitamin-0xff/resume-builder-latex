@@ -60,6 +60,58 @@ export type Languages = {
     languages: LanguageItem[];
 }
 
+export type CertificationItem = {
+    name: string;
+    issuer: string;
+    year: string;
+    credentialId?: string;
+    url?: string;
+}
+
+export type Certifications = {
+    name: string;
+    certifications: CertificationItem[];
+}
+
+export type AwardItem = {
+    title: string;
+    issuer: string;
+    year: string;
+    description?: string;
+}
+
+export type Awards = {
+    name: string;
+    awards: AwardItem[];
+}
+
+export type PublicationItem = {
+    title: string;
+    authors: string[];
+    venue: string;
+    year: string;
+    doi?: string;
+    url?: string;
+}
+
+export type Publications = {
+    name: string;
+    publications: PublicationItem[];
+}
+
+export type VolunteerItem = {
+    years: string;
+    role: string;
+    organization: string;
+    location: string;
+    description: string;
+}
+
+export type Volunteer = {
+    name: string;
+    volunteer: VolunteerItem[];
+}
+
 export type PersonalDataItem = {
     name: {
         first: string;
@@ -104,6 +156,10 @@ export type ResumeData = {
     skills?: SkillSet;
     projects?:  { name: string; projects: ProjectItem[]; };
     languages?:  { name: string; languages: LanguageItem[]; };
+    certifications?: Certifications;
+    awards?: Awards;
+    publications?: Publications;
+    volunteer?: Volunteer;
 };
 
 /**
@@ -284,7 +340,7 @@ export const exampleResumeData_alex: ResumeData = {
       first: "Alexandra",
       last: "Rusu"
     },
-    title: "Senior Full-Stack Engineer • Ex-Meta • Remote",
+    title: "Senior Full-Stack Engineer - Ex-Meta - Remote",
     address: {
       street: "Strada Viitorului 42",
       city: "Bucharest",
@@ -309,37 +365,37 @@ export const exampleResumeData_alex: ResumeData = {
     name: "Professional Experience",
     experience: [
       {
-        years: "2022–Present",
+        years: "2022--Present",
         position: "Senior Software Engineer",
         company: "Meta",
         location: "London, UK (Remote)",
         details: [
           {
-            worksDone: "Led the complete rewrite of Instagram Direct’s real-time messaging backend using Hack + GraphQL + TAO",
+            worksDone: "Led the complete rewrite of Instagram Direct's real-time messaging backend using Hack + GraphQL + TAO",
             bolteNumber: 52
           },
           {
-            worksDone: "Reduced message delivery latency from 800ms → 90ms (P99) for 1.8B daily users",
+            worksDone: "Reduced message delivery latency from 800ms to 90ms (P99) for 1.8B daily users",
             bolteNumber: 52
           },
           {
-            worksDone: "Owned E2E reliability — achieved 99.999% uptime for 3 consecutive quarters",
+            worksDone: "Owned E2E reliability - achieved 99.999% uptime for 3 consecutive quarters",
             bolteNumber: 52
           },
           {
-            worksDone: "Mentored 5 engineers and established the team’s TypeScript migration strategy",
+            worksDone: "Mentored 5 engineers and established the team's TypeScript migration strategy",
             bolteNumber: 52
           }
         ]
       },
       {
-        years: "2020–2022",
+        years: "2020--2022",
         position: "Full-Stack Engineer",
         company: "Revolut",
-        location: "Kraków, Poland (Remote)",
+        location: "Krakow, Poland (Remote)",
         details: [
           {
-            worksDone: "Built the crypto trading engine (Kotlin + PostgreSQL) handling €2B+ monthly volume",
+            worksDone: "Built the crypto trading engine (Kotlin + PostgreSQL) handling EUR 2B+ monthly volume",
             bolteNumber: 52
           },
           {
@@ -359,16 +415,16 @@ export const exampleResumeData_alex: ResumeData = {
     name: "Education",
     education: [
       {
-        years: "2016–2020",
+        years: "2016--2020",
         title: "B.Sc. Computer Science & Mathematics",
         where: "University Politehnica of Bucharest",
         details: [
           {
-            whatYouhaveDoneOrLeant: "Graduated Summa Cum Laude • GPA 9.92/10.00 (ranked 1st/380)",
+            whatYouhaveDoneOrLeant: "Graduated Summa Cum Laude - GPA 9.92/10.00 (ranked 1st/380)",
             bolteNumber: 52
           },
           {
-            whatYouhaveDoneOrLeant: "President of the ACM Student Chapter • Organized national programming contests",
+            whatYouhaveDoneOrLeant: "President of the ACM Student Chapter - Organized national programming contests",
             bolteNumber: 52
           },
           {
@@ -406,8 +462,8 @@ export const exampleResumeData_alex: ResumeData = {
     name: "Selected Projects",
     projects: [
       {
-        projectName: "BoltCV – Dynamic Resume Builder",
-        description: "The very tool you're using right now — generates stunning LaTeX CVs from JSON in <100ms",
+        projectName: "BoltCV - Dynamic Resume Builder",
+        description: "The very tool you're using right now - generates LaTeX CVs from JSON in under 100ms",
         githubLink: "https://github.com/alexrusu/boltcv",
         techUsed: [
           { name: "Next.js 14", bolteNumber: 52 },
@@ -417,8 +473,8 @@ export const exampleResumeData_alex: ResumeData = {
         ]
       },
       {
-        projectName: "NanoStore – Distributed Key-Value Store",
-        description: "Raft-based KV store in Go that passes all Jepsen tests • 42k+ stars",
+        projectName: "NanoStore - Distributed Key-Value Store",
+        description: "Raft-based KV store in Go that passes all Jepsen tests - 42k+ stars",
         githubLink: "https://github.com/alexrusu/nanostore",
         techUsed: [
           { name: "Go", bolteNumber: 52 },
