@@ -1,0 +1,117 @@
+\documentclass[<= config.fontSize =>,<= config.paperSize =>]{article}
+
+% Compact template - maximize content density for single page
+\usepackage[margin=1.2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{multicol}
+
+% Define color
+\definecolor{maincolor}{HTML}{<% if config.color == "blue" %>2E5090<% elif config.color == "orange" %>FF6600<% elif config.color == "green" %>00AA55<% elif config.color == "red" %>CC0000<% elif config.color == "purple" %>663399<% elif config.color == "grey" %>666666<% else %>000000<% endif %>}
+
+\hypersetup{colorlinks=true, linkcolor=maincolor, urlcolor=maincolor}
+
+% Compact section formatting
+\titleformat{\section}{\large\bfseries\color{maincolor}{}{0em}{}[\vspace{-0.3em}\titlerule\vspace{0.1em}]
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% Compact commands
+{% raw %}
+\newcommand{\compactheader}[3]{
+    \begin{center}
+        {\LARGE\bfseries #1} | {\large #2}\\[0.2em]
+        {\small #3}
+    \end{center}
+    \vspace{0.3em}
+}
+
+\newcommand{\compactentry}[4]{
+    \textbf{#1} | \textit{#2} \hfill \textit{#3} | #4\\[-0.1em]
+}
+{% endraw %}
+
+\begin{document}
+
+% Compact Header
+\compactheader{<= personalData.name.first => <= personalData.name.last =>}{<= personalData.title =>}{<% if personalData.email %><= personalData.email =><% endif %><% if personalData.mobile %> | <= personalData.mobile =><% endif %><% if personalData.homepage %> | \href{https://<= personalData.homepage =>}{<= personalData.homepage =>}<% endif %><% if personalData.social and personalData.social.github %> | \href{https://github.com/<= personalData.social.github =>}{GitHub}<% endif %><% if personalData.social and personalData.social.linkedin %> | \href{https://linkedin.com/in/<= personalData.social.linkedin =>}{LinkedIn}<% endif %>}
+
+<% if personalData.quote %>
+{\small\textit{<= personalData.quote | tex =>}
+\vspace{0.2em}
+<% endif %>
+
+% Experience
+\section*{<= experience.name =>}
+<% for job in experience.experience %>
+\compactentry{<= job.position | tex =>}{<= job.company | tex =>}{<= job.location =>}{<= job.years =>}
+\begin{itemize}[leftmargin=1em,itemsep=0em,topsep=0.1em,parsep=0em]
+<% for detail in job.details %>
+    \item {\small <= detail.worksDone | tex =>}
+<% endfor %>
+\end{itemize}
+<% endfor %>
+
+% Education
+<% if education %>
+\section*{<= education.name =>}
+<% for edu in education.education %>
+\compactentry{<= edu.title | tex =>}{<= edu.where | tex =>}{}{<= edu.years =>}
+<% if edu.details.length > 0 %>
+\begin{itemize}[leftmargin=1em,itemsep=0em,topsep=0.1em,parsep=0em]
+<% for detail in edu.details %>
+    \item {\small <= detail.whatYouhaveDoneOrLeant | tex =>}
+<% endfor %>
+\end{itemize}
+<% endif %>
+<% endfor %>
+<% endif %>
+
+% Skills - Two column layout
+<% if skills %>
+\section*{<= skills.name =>}
+\begin{multicols}{2}
+\raggedright
+<% for skill in skills.skills %>
+\textbf{<= skill.skillName | tex =>:} {\small <= skill.listOfSkills.join(", ") | tex =>}\\[0.1em]
+<% endfor %>
+\end{multicols}
+<% endif %>
+
+% Projects
+<% if projects %>
+\section*{<= projects.name | tex =>}
+<% for proj in projects.projects %>
+\textbf{\href{<= proj.githubLink =>}{<= proj.projectName | tex =>} | {\small <= proj.description | tex =>} | {\footnotesize\textit{<= proj.techUsed | techUsedToString | tex =>}}\\[0.2em]
+<% endfor %>
+<% endif %>
+
+% Certifications
+<% if certifications %>
+\section*{<= certifications.name | tex =>}
+<% for cert in certifications.certifications %>
+\textbf{<= cert.name | tex =>} (<= cert.year =>) - {\small\textit{<= cert.issuer | tex =>}\\[0.1em]
+<% endfor %>
+<% endif %>
+
+% Awards
+<% if awards %>
+\section*{<= awards.name | tex =>}
+<% for award in awards.awards %>
+\textbf{<= award.title | tex =>} (<= award.year =>) - {\small\textit{<= award.issuer | tex =>}\\[0.1em]
+<% endfor %>
+<% endif %>
+
+% Languages
+<% if languages %>
+\section*{<= languages.name | tex =>}
+<% for lang in languages.languages %>
+\textbf{<= lang.languageName | tex =>:} <= lang.proficiencyLevel | tex %> \quad
+<% endfor %>
+<% endif %>
+
+\end{document}

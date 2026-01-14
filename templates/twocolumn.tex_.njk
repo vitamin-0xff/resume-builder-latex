@@ -1,0 +1,203 @@
+\documentclass[<= config.fontSize =>,<= config.paperSize =>]{article}
+
+% Two-column template - sidebar with contact/skills
+\usepackage[margin=0cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{paracol}
+\usepackage{tikz}
+
+% Define colors
+\definecolor{maincolor}{HTML}{<% if config.color == "blue" %>2E5090<% elif config.color == "orange" %>FF6600<% elif config.color == "green" %>00AA55<% elif config.color == "red" %>CC0000<% elif config.color == "purple" %>663399<% elif config.color == "grey" %>666666<% else %>000000<% endif %>}
+
+\definecolor{sidebarcolor}{HTML}{F5F5F5}
+
+\hypersetup{colorlinks=true, linkcolor=maincolor, urlcolor=maincolor}
+
+% Section formatting
+\titleformat{\section}{\Large\bfseries\color{maincolor}}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{6pt}
+
+\titleformat{\subsection}{\large\bfseries\color{maincolor}}{}{0em}{}
+\titlespacing*{\subsection}{0pt}{6pt}{4pt}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% Custom commands for two-column layout
+{% raw %}
+\newcommand{\sidebarheader}[1]{
+    {\large\bfseries\color{maincolor} #1}\\[0.3em]
+}
+
+\newcommand{\contactitem}[2]{
+    \textbf{#1}\\
+    {\small #2}\\[0.3em]
+}
+
+\newcommand{\skillitem}[2]{
+    \textbf{#1}\\
+    {\small #2}\\[0.3em]
+}
+{% endraw %}
+
+\begin{document}
+
+% Set column ratio (30% sidebar, 70% main)
+\columnratio{0.3}
+\setlength{\columnsep}{0pt}
+
+\begin{paracol}{2}
+
+% LEFT COLUMN (Sidebar)
+\switchcolumn[0]
+\colorbox{sidebarcolor}{%
+\begin{minipage}[t][\textheight][t]{\linewidth}
+\vspace{1cm}
+\hspace{0.5cm}
+\begin{minipage}{0.85\linewidth}
+
+% Name and Title
+{\Large\bfseries <= personalData.name.first =>\\<= personalData.name.last =>}\\[0.3em]
+{\large\color{maincolor} <= personalData.title =>}\\[1em]
+
+% Contact
+\sidebarheader{Contact}
+<% if personalData.email %>
+\contactitem{Email}{<= personalData.email =>}
+<% endif %>
+<% if personalData.mobile %>
+\contactitem{Phone}{<= personalData.mobile =>}
+<% endif %>
+<% if personalData.homepage %>
+\contactitem{Web}{\href{https://<= personalData.homepage =>}{<= personalData.homepage =>}}
+<% endif %>
+<% if personalData.address %>
+\contactitem{Location}{<= personalData.address.city =>, <= personalData.address.country =>}
+<% endif %>
+
+% Social
+<% if personalData.social %>
+\vspace{0.5em}
+\sidebarheader{Links}
+<% if personalData.social.github %>
+\contactitem{GitHub}{\href{https://github.com/<= personalData.social.github =>}{<= personalData.social.github =>}}
+<% endif %>
+<% if personalData.social.linkedin %>
+\contactitem{LinkedIn}{\href{https://linkedin.com/in/<= personalData.social.linkedin =>}{<= personalData.social.linkedin =>}}
+<% endif %>
+<% endif %>
+
+% Skills
+<% if skills %>
+\vspace{0.5em}
+\sidebarheader{<= skills.name =>}
+<% for skill in skills.skills %>
+\skillitem{<= skill.skillName | tex =>}{<= skill.listOfSkills.join(", ") | tex =>}
+<% endfor %>
+<% endif %>
+
+% Languages
+<% if languages %>
+\vspace{0.5em}
+\sidebarheader{<= languages.name | tex =>}
+<% for lang in languages.languages %>
+\skillitem{<= lang.languageName | tex =>}{<= lang.proficiencyLevel | tex =>}
+<% endfor %>
+<% endif %>
+
+\end{minipage}
+\end{minipage}
+}
+
+% RIGHT COLUMN (Main content)
+\switchcolumn[1]
+\vspace{1cm}
+\hspace{0.5cm}
+\begin{minipage}{0.9\linewidth}
+
+<% if personalData.quote %>
+\textit{"<= personalData.quote | tex =>"}\\[0.5em]
+<% endif %>
+
+% Experience
+\section*{<= experience.name =>}
+<% for job in experience.experience %>
+\subsection*{<= job.position | tex =>}
+\textit{<= job.company | tex =>} | <= job.location => \hfill \textit{<= job.years =>}
+\begin{itemize}[leftmargin=1.2em,itemsep=0.1em,topsep=0.3em]
+<% for detail in job.details %>
+    \item <= detail.worksDone | tex =>
+<% endfor %>
+\end{itemize}
+\vspace{0.3em}
+<% endfor %>
+
+% Education
+<% if education %>
+\section*{<= education.name =>}
+<% for edu in education.education %>
+\subsection*{<= edu.title | tex =>}
+\textit{<= edu.where | tex =>} \hfill \textit{<= edu.years =>}
+<% if edu.details.length > 0 %>
+\begin{itemize}[leftmargin=1.2em,itemsep=0.1em,topsep=0.3em]
+<% for detail in edu.details %>
+    \item <= detail.whatYouhaveDoneOrLeant | tex =>
+<% endfor %>
+\end{itemize}
+<% endif %>
+\vspace{0.3em}
+<% endfor %>
+<% endif %>
+
+% Projects
+<% if projects %>
+\section*{<= projects.name | tex =>}
+<% for proj in projects.projects %>
+\subsection*{\href{<= proj.githubLink =>}{<= proj.projectName | tex =>}}
+<= proj.description | tex =>\\
+\textit{Technologies:} <= proj.techUsed | techUsedToString | tex =>\\[0.4em]
+<% endfor %>
+<% endif %>
+
+% Certifications
+<% if certifications %>
+\section*{<= certifications.name | tex =>}
+<% for cert in certifications.certifications %>
+\textbf{<= cert.name | tex =>} (<= cert.year =>) - \textit{<= cert.issuer | tex =>}\\[0.2em]
+<% endfor %>
+<% endif %>
+
+% Awards
+<% if awards %>
+\section*{<= awards.name | tex =>}
+<% for award in awards.awards %>
+\textbf{<= award.title | tex =>} (<= award.year =>) - \textit{<= award.issuer | tex =>}<% if award.description %>\\<= award.description | tex =><% endif %>\\[0.2em]
+<% endfor %>
+<% endif %>
+
+% Publications
+<% if publications %>
+\section*{<= publications.name | tex =>}
+<% for pub in publications.publications %>
+\textbf{<= pub.title | tex =>} (<= pub.year =>)\\
+<= pub.authors.join(", ") | tex => | \textit{<= pub.venue | tex =>}\\[0.3em]
+<% endfor %>
+<% endif %>
+
+% Volunteer
+<% if volunteer %>
+\section*{<= volunteer.name | tex =>}
+<% for vol in volunteer.volunteer %>
+\textbf{<= vol.role | tex =>} - \textit{<= vol.organization | tex =>} \hfill \textit{<= vol.years =>}\\
+<= vol.description | tex =>\\[0.3em]
+<% endfor %>
+<% endif %>
+
+\end{minipage}
+
+\end{paracol}
+
+\end{document}

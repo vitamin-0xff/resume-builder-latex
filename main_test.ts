@@ -20,6 +20,9 @@ Deno.test("selectTemplate returns matching template file", () => {
   assertEquals(selectTemplate("banking"), "banking.tex.njk");
   assertEquals(selectTemplate("modern"), "modern.tex.njk");
   assertEquals(selectTemplate("casual"), "generator.tex.njk");
+  assertEquals(selectTemplate("minimal"), "minimal.tex.njk");
+  assertEquals(selectTemplate("compact"), "compact.tex.njk");
+  assertEquals(selectTemplate("twocolumn"), "twocolumn.tex.njk");
 });
 
 Deno.test("parseArgs applies overrides", () => {
@@ -48,8 +51,8 @@ Deno.test("getHelpText contains usage and options", () => {
   const help = getHelpText();
   const lines = help.split("\n");
   assertEquals(lines[0].startsWith("Usage:"), true);
-  // Spot-check a few documented options
-  const hasTemplate = help.includes("--template=classic|banking|modern|casual");
+  // Spot-check documented options
+  const hasTemplate = help.includes("--template=<style>");
   const hasColor = help.includes("--color=blue|orange|green|red|purple|grey|black");
   const hasOut = help.includes("--out=<file.tex>");
   const hasOutDir = help.includes("--outDir=<directory>");

@@ -1,0 +1,168 @@
+\documentclass[<= config.fontSize =>,<= config.paperSize =>]{article}
+
+% =========================
+% Packages
+% =========================
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+% =========================
+% Color from config
+% =========================
+\definecolor{maincolor}{HTML}{
+<% if config.color == "blue" %>2E5090
+<% elif config.color == "orange" %>FF6600
+<% elif config.color == "green" %>00AA55
+<% elif config.color == "red" %>CC0000
+<% elif config.color == "purple" %>663399
+<% elif config.color == "grey" %>666666
+<% else %>000000
+<% endif %>
+}
+
+% =========================
+% Hyperlinks
+% =========================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=maincolor,
+    urlcolor=maincolor,
+}
+
+% =========================
+% Section formatting
+% =========================
+\titleformat{\section}
+  {\Large\bfseries\color{maincolor}}
+  {}
+  {0em}
+  {}
+  [\titlerule]
+
+\titlespacing*{\section}{0pt}{12pt}{8pt}
+
+\pagestyle{empty}
+
+% =========================
+% Custom commands (RAW)
+% =========================
+\newcommand{\cvheader}[3]{
+    \begin{center}
+        {\Huge\bfseries #1}\par
+        {\large #2}\par
+        #3
+    \end{center}
+    \vspace{0.5em}
+}
+
+\newcommand{\cventry}[4]{
+    \noindent\textbf{#1}\hfill \textit{#2}\par
+    \textit{#3}\hfill #4\par
+    \vspace{0.2em}
+}
+
+\newcommand{\cvitem}[2]{
+    \noindent\textbf{#1:} #2\par
+}
+
+% =========================
+% Document
+% =========================
+\begin{document}
+
+% Header
+\cvheader
+{<= personalData.name.first | tex => <= personalData.name.last | tex =>}
+{<= personalData.title | tex =>}
+{
+<% if personalData.email %><= personalData.email | tex =><% endif %>
+<% if personalData.mobile %> | <= personalData.mobile | tex =><% endif %>
+<% if personalData.homepage %> | \href{https://<= personalData.homepage | tex =>}{<= personalData.homepage | tex =>}<% endif %>
+<% if personalData.social and personalData.social.github %> | \href{https://github.com/<= personalData.social.github | tex =>}{github.com/<= personalData.social.github | tex =>}<% endif %>
+<% if personalData.social and personalData.social.linkedin %> | \href{https://linkedin.com/in/<= personalData.social.linkedin | tex =>}{linkedin.com/in/<= personalData.social.linkedin | tex =>}<% endif %>
+}
+
+<% if personalData.quote %>
+\noindent\textit{<= personalData.quote | tex =>}
+\vspace{0.5em}
+<% endif %>
+
+% =========================
+% Experience
+% =========================
+\section*{<= experience.name | tex =>}
+
+<% for job in experience.experience %>
+\cventry
+{<= job.position | tex =>}
+{<= job.years | tex =>}
+{<= job.company | tex =>}
+{<= job.location | tex =>}
+
+\begin{itemize}[leftmargin=1.5em,itemsep=0.1em,topsep=0.3em]
+<% for detail in job.details %>
+    \item <= detail.worksDone | tex =>
+<% endfor %>
+\end{itemize>
+<% endfor %>
+
+% =========================
+% Education
+% =========================
+<% if education %>
+\section*{<= education.name | tex =>}
+
+<% for edu in education.education %>
+\cventry
+{<= edu.title | tex =>}
+{<= edu.years | tex =>}
+{<= edu.where | tex =>}
+{}
+
+<% if edu.details and edu.details.length > 0 %>
+\begin{itemize}[leftmargin=1.5em,itemsep=0.1em,topsep=0.3em]
+<% for detail in edu.details %>
+    \item <= detail.whatYouhaveDoneOrLeant | tex =>
+<% endfor %>
+\end{itemize>
+<% endif %>
+<% endfor %>
+<% endif %>
+
+% =========================
+% Skills
+% =========================
+<% if skills %>
+\section*{<= skills.name | tex =>}
+<% for skill in skills.skills %>
+\cvitem{<= skill.skillName | tex =>}{<= skill.listOfSkills.join(", ") | tex =>}
+<% endfor %>
+<% endif %>
+
+% =========================
+% Projects
+% =========================
+<% if projects %>
+\section*{<= projects.name | tex =>}
+
+<% for proj in projects.projects %>
+\noindent\textbf{\href{<= proj.githubLink | tex =>}{<= proj.projectName | tex =>}}\par
+<= proj.description | tex =>\par
+\textit{Tech:} <= proj.techUsed | techUsedToString | tex =>\par\vspace{0.4em}
+<% endfor %>
+<% endif %>
+
+% =========================
+% Languages
+% =========================
+<% if languages %>
+\section*{<= languages.name | tex =>}
+<% for lang in languages.languages %>
+\cvitem{<= lang.languageName | tex =>}{<= lang.proficiencyLevel | tex =>}
+<% endfor %>
+<% endif %>
+
+\end{document}

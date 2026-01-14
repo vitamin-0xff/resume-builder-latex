@@ -1,4 +1,4 @@
-export type TemplateStyle = "classic" | "banking" | "modern" | "casual";
+export type TemplateStyle = "classic" | "banking" | "modern" | "casual" | "minimal" | "compact" | "twocolumn";
 export type ColorScheme = "blue" | "orange" | "green" | "red" | "purple" | "grey" | "black";
 
 export interface CVConfig {
@@ -21,8 +21,11 @@ export const defaultConfig: CVConfig = {
 
 // Template descriptions for users
 export const templateDescriptions: Record<TemplateStyle, string> = {
-    classic: "Traditional CV format with timeline and detailed sections",
-    banking: "Clean, professional style suitable for corporate positions",
-    modern: "Contemporary design with emphasis on visual hierarchy",
-    casual: "Relaxed, creative layout for startups and creative roles",
+    classic: "Traditional CV format with timeline and detailed sections (moderncv)",
+    banking: "Clean, professional style suitable for corporate positions (moderncv)",
+    modern: "Contemporary design with emphasis on visual hierarchy (moderncv)",
+    casual: "Relaxed, creative layout for startups and creative roles (moderncv)",
+    minimal: "Clean custom template with standard article class, no dependencies",
+    compact: "Dense single-page layout maximizing content, good for junior roles",
+    twocolumn: "Sidebar layout with contact/skills on the left, content on the right",
 };

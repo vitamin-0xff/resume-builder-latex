@@ -21,12 +21,18 @@ export function selectTemplate(template: TemplateStyle): string {
       return "modern.tex.njk";
     case "casual":
       return "generator.tex.njk";
+    case "minimal":
+      return "minimal.tex.njk";
+    case "compact":
+      return "compact.tex.njk";
+    case "twocolumn":
+      return "twocolumn.tex.njk";
     default:
       return "generator.tex.njk";
   }
 }
 
-const allowedTemplates: TemplateStyle[] = ["classic", "banking", "modern", "casual"];
+const allowedTemplates: TemplateStyle[] = ["classic", "banking", "modern", "casual", "minimal", "compact", "twocolumn"];
 const allowedColors: ColorScheme[] = ["blue", "orange", "green", "red", "purple", "grey", "black"];
 
 function isTemplate(value: string): value is TemplateStyle {
@@ -88,7 +94,9 @@ export function getHelpText(): string {
     "Usage: deno run --allow-env --allow-read --allow-write --allow-net main.ts [options]",
     "",
     "Options:",
-    "  --template=classic|banking|modern|casual   Select template style",
+    "  --template=<style>                        Select template style",
+    "    classic, banking, modern, casual (moderncv-based)",
+    "    minimal, compact, twocolumn (custom LaTeX)",
     "  --color=blue|orange|green|red|purple|grey|black   Select color scheme",
     "  --out=<file.tex>                          Set output file name",
     "  --outDir=<directory>                      Set output directory",
@@ -96,7 +104,10 @@ export function getHelpText(): string {
     "",
     "Examples:",
     "  deno run --allow-env --allow-read --allow-write --allow-net main.ts \\",
-    "    --template=banking --color=green --out=resume.tex --outDir=dist",
+    "    --template=minimal --color=green --out=resume.tex",
+    "",
+    "  deno run --allow-env --allow-read --allow-write --allow-net main.ts \\",
+    "    --template=twocolumn --color=purple --outDir=dist",
     "",
     "  deno task dev                              # Uses defaults from config.ts",
   ].join("\n");
@@ -110,8 +121,8 @@ function buildEnv() {
       blockEnd: "%>",
       variableStart: "<=",
       variableEnd: "=>",
-      commentStart: "{#",
-      commentEnd: "#}",
+      commentStart: "{+",
+      commentEnd: "+}",
     },
   });
 

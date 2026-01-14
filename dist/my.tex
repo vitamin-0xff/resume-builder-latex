@@ -1,149 +1,239 @@
-\documentclass[11pt,a4paper,sans]{moderncv}
+\documentclass[11pt,a4paper]{article}
 
-% Modern style - contemporary and visually appealing
-\moderncvstyle{casual}
-\moderncvcolor{green}
-\usepackage[scale=0.88, top=1.8cm, bottom=1.8cm]{geometry}
-\usepackage{pifont}
-\setlength{\hintscolumnwidth}{3.2cm}
+% =========================
+% Packages
+% =========================
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
 
-% Personal data
-\name{Amine}{Essid}
-\title{Software Developer}
-\address{Kalaat Andalous}{Ariana}{Tunisia}
+% =========================
+% Color from config
+% =========================
+\definecolor{maincolor}{HTML}{
+00AA55
 
-\mobile{+216 53 750 522}
+}
 
+% =========================
+% Hyperlinks
+% =========================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=maincolor,
+    urlcolor=maincolor,
+}
 
-\email{amine.essid@rades.r-iset.tn}
+% =========================
+% Section formatting
+% =========================
+\titleformat{\section}
+  {\Large\bfseries\color{maincolor}}
+  {}
+  {0em}
+  {}
+  [\titlerule]
 
+\titlespacing*{\section}{0pt}{12pt}{8pt}
 
-\homepage{essid.dev}
+\pagestyle{empty}
 
+% =========================
+% Custom commands (RAW)
+% =========================
+\newcommand{\cvheader}[3]{
+    \begin{center}
+        {\Huge\bfseries #1}\par
+        {\large #2}\par
+        #3
+    \end{center}
+    \vspace{0.5em}
+}
 
-\social[linkedin]{amine.essid.in}
+\newcommand{\cventry}[4]{
+    \noindent\textbf{#1}\hfill \textit{#2}\par
+    \textit{#3}\hfill #4\par
+    \vspace{0.2em}
+}
 
+\newcommand{\cvitem}[2]{
+    \noindent\textbf{#1:} #2\par
+}
 
-\social[github]{vitamin-0xff}
-
-
-\quote{\Large Full-stack developer with a passion for building reliable and scalable systems.}
-
-
+% =========================
+% Document
+% =========================
 \begin{document}
-\makecvtitle
 
-\section{Experience}
-
-\subsection{Software Developer at IoTEK}
-\cvitem{Period}{2023--2024}
-\cvitem{Location}{Local}
-
-\cvitem{\ding{52}}{Built scalable system project management \& monitoring tools using FastAPI in Python.}
-
-\cvitem{\ding{52}}{Designed RESTful APIs for internal tools.}
-
-\cvitem{\ding{52}}{Built data visualization dashboards using Vanilla JavaScript}
-
-
-\subsection{Software Developer at HOTIX}
-\cvitem{Period}{2023--2024}
-\cvitem{Location}{Hybride}
-
-\cvitem{\ding{52}}{Built a scalable system for subscription vehicule subscription management using Laravel PHP framework.}
-
-\cvitem{\ding{52}}{Designed RESTful APIs for internal tools.}
-
-\cvitem{\ding{52}}{Built an admin dashboard using scss \& NextJs framework }
-
-\cvitem{\ding{52}}{Built a native mobile dashboard using Jetpack Compose \& Integrate Stripe for Payment}
+% Header
+\cvheader
+{Amine Essid}
+{Software Developer}
+{
+amine.essid@rades.r-iset.tn
+ | +216 53 750 522
+ | \href{https://essid.dev}{essid.dev}
+ | \href{https://github.com/vitamin-0xff}{github.com/vitamin-0xff}
+ | \href{https://linkedin.com/in/amine.essid.in}{linkedin.com/in/amine.essid.in}
+}
 
 
-\subsection{Software Developer at Data Horizon}
-\cvitem{Period}{2022--2023}
-\cvitem{Location}{Hybride}
-
-\cvitem{\ding{52}}{Built a realtime smart house data monitoring using WebSocket \& FastAPI in Python.}
-
-\cvitem{\ding{52}}{Designed a frameware for ESP32, IoT devices data collection.}
-
-\cvitem{\ding{52}}{Built an admin dashboard using Css \& Vanilla JavaScript}
+\noindent\textit{Full-stack developer with a passion for building reliable and scalable systems.}
+\vspace{0.5em}
 
 
+% =========================
+% Experience
+% =========================
+\section*{Experience}
 
 
-\section{Education}
+\cventry
+{Software Developer}
+{2023--2024}
+{IoTEK}
+{Local}
 
-\subsection{Master's Degree in IDIRIA (Robotics, Data Science, Artificial Intelligence)}
-\cvitem{Period}{2025--2026}
-\cvitem{Institution}{High Institute of Technological Studies of Rades (ISET Rades)}
+\begin{itemize}[leftmargin=1.5em,itemsep=0.1em,topsep=0.3em]
 
-\cvitem{\ding{52}}{Leant advanced concepts of Dashboarding using Microsoft Power BI, ETL Pipelines}
+    \item Built scalable system project management \& monitoring tools using FastAPI in Python.
 
-\cvitem{\ding{52}}{Leant Data Science, along with Data engineering concepts using Numpy, Pandas and matplotlib for data visualization in Python}
+    \item Designed RESTful APIs for internal tools.
 
-\cvitem{\ding{52}}{Buit a dashboard project using Microsoft Power BI for data visualization and reporting about sales data (Brazilian E-Commerce Public Dataset).}
+    \item Built data visualization dashboards using Vanilla JavaScript
 
+\end{itemize>
 
-\subsection{Bachelor's Degree in Technology and Computer Science}
-\cvitem{Period}{2022--2024}
-\cvitem{Institution}{High Institute of Technological Studies of Charguia (ISET Charguia)}
+\cventry
+{Software Developer}
+{2023--2024}
+{HOTIX}
+{Hybride}
 
-\cvitem{\ding{52}}{Leant adanced concepts of Web Development using Laravel PHP framework for backend and ReactJs for frontend.}
+\begin{itemize}[leftmargin=1.5em,itemsep=0.1em,topsep=0.3em]
 
-\cvitem{\ding{52}}{Leant Mobile Development concepts using Kotlin and Jetpack Compose for Android Native development.}
+    \item Built a scalable system for subscription vehicule subscription management using Laravel PHP framework.
 
-\cvitem{\ding{52}}{Leant Database Management Systems concepts using Oracle, MySQL and PostgreSQL.}
+    \item Designed RESTful APIs for internal tools.
 
+    \item Built an admin dashboard using scss \& NextJs framework 
 
+    \item Built a native mobile dashboard using Jetpack Compose \& Integrate Stripe for Payment
 
+\end{itemize>
 
+\cventry
+{Software Developer}
+{2022--2023}
+{Data Horizon}
+{Hybride}
 
-\section{Technical Skills}
+\begin{itemize}[leftmargin=1.5em,itemsep=0.1em,topsep=0.3em]
 
-\cvitem{\textbf{Programming Languages}}{TypeScript(Node, Deno runtimes) • Python • C/C++ • Java • Kotlin • PHP}
+    \item Built a realtime smart house data monitoring using WebSocket \& FastAPI in Python.
 
-\cvitem{\textbf{Frontend tools \& frameworks}}{Nextjs • React • ReactNative(Expo, Baremetal) • TailwindCSS • Android Jetpack Compose}
+    \item Designed a frameware for ESP32, IoT devices data collection.
 
-\cvitem{\textbf{Frameworks Backend}}{Nestjs • Spring Boot • Laravel • FastAPI}
+    \item Built an admin dashboard using Css \& Vanilla JavaScript
 
-\cvitem{\textbf{Tools \& devops}}{Docker • Docker Compose • Github Actions}
-
-\cvitem{\textbf{Prespective tools (to learn)}}{Kubernetes • AWS • Azure • Finetuning LLMs}
-
-
-
-
-
-
-\section{Personal \& Academic Projects}
-
-\subsection{\href{github.com/vitamin-0xff/resume-builder-latex}{Automated Marcket Cart}}
-\cvitem{Description}{An automated market cart in terme of placing items and payment}
-\cvitem{Tech Stack}{Android Jetpack Compose, Integrate Stripe for Payment, Nextjs for admin dashboard, Spring Boot for backend}
-
-\subsection{\href{github.com/vitamin-0xff/resume-builder-latex}{Automated Resume Builder (Data Driven CV)}}
-\cvitem{Description}{A dynamic resume generator that creates LaTeX CVs from JSON data using Nunjucks templating engine.}
-\cvitem{Tech Stack}{Latex, Nunjucks template engine, Typescript}
-
-\subsection{\href{github.com/vitamin-0xff/resume-builder-latex}{Job finder}}
-\cvitem{Description}{A system built on the top of Typesense search engine, with scrapet data around the Tunisian jobs websites}
-\cvitem{Tech Stack}{Typescript(Deno runtime), Typesense Search engine}
-
-\subsection{\href{github.com/vitamin-0xff/resume-builder-latex}{Mini Scraper}}
-\cvitem{Description}{A set of functions that automated the scraping}
-\cvitem{Tech Stack}{Typescript(Deno runtime)}
+\end{itemize>
 
 
+% =========================
+% Education
+% =========================
+
+\section*{Education}
+
+
+\cventry
+{Master's Degree in IDIRIA (Robotics, Data Science, Artificial Intelligence)}
+{2025--2026}
+{High Institute of Technological Studies of Rades (ISET Rades)}
+{}
+
+
+\begin{itemize}[leftmargin=1.5em,itemsep=0.1em,topsep=0.3em]
+
+    \item Leant advanced concepts of Dashboarding using Microsoft Power BI, ETL Pipelines
+
+    \item Leant Data Science, along with Data engineering concepts using Numpy, Pandas and matplotlib for data visualization in Python
+
+    \item Buit a dashboard project using Microsoft Power BI for data visualization and reporting about sales data (Brazilian E-Commerce Public Dataset).
+
+\end{itemize>
+
+
+\cventry
+{Bachelor's Degree in Technology and Computer Science}
+{2022--2024}
+{High Institute of Technological Studies of Charguia (ISET Charguia)}
+{}
+
+
+\begin{itemize}[leftmargin=1.5em,itemsep=0.1em,topsep=0.3em]
+
+    \item Leant adanced concepts of Web Development using Laravel PHP framework for backend and ReactJs for frontend.
+
+    \item Leant Mobile Development concepts using Kotlin and Jetpack Compose for Android Native development.
+
+    \item Leant Database Management Systems concepts using Oracle, MySQL and PostgreSQL.
+
+\end{itemize>
 
 
 
 
+% =========================
+% Skills
+% =========================
+
+\section*{Technical Skills}
+
+\cvitem{Programming Languages}{TypeScript(Node, Deno runtimes), Python, C/C++, Java, Kotlin, PHP}
+
+\cvitem{Frontend tools \& frameworks}{Nextjs, React, ReactNative(Expo, Baremetal), TailwindCSS, Android Jetpack Compose}
+
+\cvitem{Frameworks Backend}{Nestjs, Spring Boot, Laravel, FastAPI}
+
+\cvitem{Tools \& devops}{Docker, Docker Compose, Github Actions}
+
+\cvitem{Prespective tools (to learn)}{Kubernetes, AWS, Azure, Finetuning LLMs}
 
 
 
+% =========================
+% Projects
+% =========================
 
-\section{Spoken Languages}
+\section*{Personal \& Academic Projects}
+
+
+\noindent\textbf{\href{github.com/vitamin-0xff/resume-builder-latex}{Automated Marcket Cart}}\par
+An automated market cart in terme of placing items and payment\par
+\textit{Tech:} Android Jetpack Compose, Integrate Stripe for Payment, Nextjs for admin dashboard, Spring Boot for backend\par\vspace{0.4em}
+
+\noindent\textbf{\href{github.com/vitamin-0xff/resume-builder-latex}{Automated Resume Builder (Data Driven CV)}}\par
+A dynamic resume generator that creates LaTeX CVs from JSON data using Nunjucks templating engine.\par
+\textit{Tech:} Latex, Nunjucks template engine, Typescript\par\vspace{0.4em}
+
+\noindent\textbf{\href{github.com/vitamin-0xff/resume-builder-latex}{Job finder}}\par
+A system built on the top of Typesense search engine, with scrapet data around the Tunisian jobs websites\par
+\textit{Tech:} Typescript(Deno runtime), Typesense Search engine\par\vspace{0.4em}
+
+\noindent\textbf{\href{github.com/vitamin-0xff/resume-builder-latex}{Mini Scraper}}\par
+A set of functions that automated the scraping\par
+\textit{Tech:} Typescript(Deno runtime)\par\vspace{0.4em}
+
+
+
+% =========================
+% Languages
+% =========================
+
+\section*{Spoken Languages}
 
 \cvitem{Arabic}{Native}
 
